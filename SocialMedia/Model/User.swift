@@ -14,4 +14,4 @@ struct User {
     
 }
 
-let Danis = User(firstName: "Danis", lastName: "Bagautdinov", avatar: "danis")
+let Danis = User(firstName: "Danis", lastName: "Bagautdinov", avatar: "Danis")

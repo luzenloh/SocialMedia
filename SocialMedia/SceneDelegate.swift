@@ -84,14 +84,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         
         tabBarController.viewControllers = [ProfileNC, FriendsNC, GalleryNC, SettingsNC]
-        
+        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.isTranslucent = true
+        tabBarController.tabBar.unselectedItemTintColor = .systemGray
         return tabBarController
     }
     
     //Creating Navigation Controllers
     private func createNavigationController(rootViewController: UIViewController, title: String, image: UIImage?) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.navigationBar.prefersLargeTitles = true
         navigationController.title = title
         navigationController.tabBarItem.image = image
         return navigationController
