@@ -24,7 +24,6 @@ class PostCell: UITableViewCell {
         stack.axis = .horizontal
         stack.alignment = .center
         stack.distribution = .equalSpacing
-//        stack.spacing = 8
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -82,6 +81,26 @@ class PostCell: UITableViewCell {
         return textView
     }()
     
+    let likeButton = AnimatedHeartButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+    
+    let commentButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "message"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        btn.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        return btn
+    }()
+    
+    let bStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .equalSpacing
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
@@ -99,6 +118,9 @@ class PostCell: UITableViewCell {
         hStack.addArrangedSubview(dateLabel)
         mainStack.addArrangedSubview(hStack)
         mainStack.addArrangedSubview(postTextView)
+        bStack.addArrangedSubview(likeButton)
+        bStack.addArrangedSubview(commentButton)
+        mainStack.addArrangedSubview(bStack)
         cellView.addSubview(mainStack)
         contentView.addSubview(cellView)
         
@@ -113,15 +135,18 @@ class PostCell: UITableViewCell {
             
             // КоmainStackнстрейнты для hStack
             mainStack.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 16),
-            mainStack.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 8),
-            mainStack.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -8),
+            mainStack.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 16),
+            mainStack.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -16),
             mainStack.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -16),
             
             hStack.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
             hStack.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor),
+            bStack.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
+            bStack.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor),
+            
             postTextView.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
             postTextView.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor),
-            
+            likeButton.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
             
             // Констрейнты для изображения
             postImageView.widthAnchor.constraint(equalToConstant: 40),
