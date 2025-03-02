@@ -98,8 +98,7 @@ class ProfileViewController: UIViewController {
     }
     
     func createPostsTable() {
-        tableView = UITableView()
-        tableView.register(PostCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(PostCell.self, forCellReuseIdentifier: "postCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundView = nil
         tableView.backgroundColor = .white
@@ -130,7 +129,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PostCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as? PostCell {
             cell.setCell(ava: posts[indexPath.row].name, name: posts[indexPath.row].name, text: posts[indexPath.row].text)
             return cell
         }

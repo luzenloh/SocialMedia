@@ -15,8 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let tabBarController = createTabBarController()
         let window = UIWindow(windowScene: windowScene)
+        let tabBarController = createTabBarController()
         window.rootViewController = tabBarController
         self.window = window
         window.makeKeyAndVisible()
@@ -54,6 +54,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func createTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.tabBar.isTranslucent = false
+        tabBarController.tabBar.layer.backgroundColor = UIColor(hex: "#E6E6FAFF")?.cgColor
+        tabBarController.tabBar.layer.cornerRadius = 20
+        tabBarController.tabBar.clipsToBounds = true
+        tabBarController.tabBar.unselectedItemTintColor = .systemGray
+        tabBarController.tabBar.barTintColor = UIColor(hex: "#E6E6FAFF")
         
         //Profile Navigation
         let ProfileNC = createNavigationController(
@@ -84,9 +89,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         
         tabBarController.viewControllers = [ProfileNC, FriendsNC, GalleryNC, SettingsNC]
-        tabBarController.tabBar.backgroundColor = .white
-        tabBarController.tabBar.isTranslucent = true
-        tabBarController.tabBar.unselectedItemTintColor = .systemGray
         return tabBarController
     }
     
